@@ -7,7 +7,6 @@ import List from './components/List';
 
 import
 {
-    StyleSheet,
     AsyncStorage,
     View,
     ActivityIndicator,
@@ -25,9 +24,12 @@ var getRSSFeed = function ()
         });
     }).catch((error) =>
     {
-        alert("error = " + error.message);
+        //alert("error = " + error.message);
     });
 }
+
+
+
 
 export default class HomeScreen extends React.Component
 {
@@ -61,7 +63,16 @@ export default class HomeScreen extends React.Component
         {
             return (
                 <View style={{ flex: 1, padding: 20 }}>
-                    <ActivityIndicator />
+                    <ActivityIndicator style={{
+                        flex: 1,
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        position: 'absolute',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }} />
                 </View>
             )
         }
@@ -86,7 +97,10 @@ export default class HomeScreen extends React.Component
 
     _onItemTap = (record) =>
     {
-        alert(JSON.stringify(record));
+        this.props.navigation.navigate('WebView', {
+            uri: record.link.toString()
+        });
+
     }
 
     _onRefresh = () =>
@@ -118,11 +132,3 @@ export default class HomeScreen extends React.Component
         });
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});

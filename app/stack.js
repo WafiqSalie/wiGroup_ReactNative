@@ -3,9 +3,11 @@ import { createStackNavigator } from 'react-navigation';
 
 
 import HomeScreen from './Home';
+import WebView from './Webview'
 
 export default createStackNavigator(
     {
-        Home: HomeScreen
+        Home: HomeScreen,
+        WebView: WebView
     }
 );
