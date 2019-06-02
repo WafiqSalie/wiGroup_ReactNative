@@ -54,19 +54,19 @@ export default class SignInScreen extends React.Component
     _PasswordTextChange = (password) =>
     {
         this.setState({
-            Password: password
+            Password: CryptoJS.AES.encrypt(password, encryptKey)
         });
     }
 
     _signInAsync = async () =>
     {
-        if (!this.state.Username || this.state.Password)
+        if (!this.state.Username || !this.state.Password)
         {
             Alert.alert("Login","Please enter a username and password")
             return;
         }
 
-        AsyncStorage.setItem('userToken', CryptoJS.AES.encrypt(this.state.Username + ':' + this.state.Password, encryptKey));
+        await AsyncStorage.setItem('userToken', this.state.Username + ":" + this.state.Password);
         this.props.navigation.navigate('App');
     };
 }
