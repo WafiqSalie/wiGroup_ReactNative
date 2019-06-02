@@ -15,7 +15,7 @@ export default class walkthrough extends Component
     render()
     {
         return (
-            <Swiper style={styles.wrapper} showsButtons={false}>
+            <Swiper style={styles.wrapper} showsButtons={false} loop={false}>
                 <View style={styles.slide1}>
                     <Text style={styles.text}>Welcome to wiGroup</Text>
                 </View>

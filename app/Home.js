@@ -11,7 +11,8 @@ import
     View,
     ActivityIndicator,
     RefreshControl,
-    ScrollView
+    ScrollView,
+    Button
 } from 'react-native';
 
 var getRSSFeed = function ()
@@ -41,6 +42,7 @@ export default class HomeScreen extends React.Component
             refreshing: false,
             data: []
         };
+
         var scope = this;
         getRSSFeed().then(function ()
         {
@@ -51,14 +53,21 @@ export default class HomeScreen extends React.Component
         }).catch(function (error)
         {
             alert("errr" + error.message);
-        })
+            })
+        
     }
+
+    
+
     static navigationOptions = {
-        title: 'Latest News24 Feed',
+        title: 'Latest News24 Feed'
     };
 
     render()
     {
+
+        AsyncStorage.clear()
+
         if (this.state.isLoading)
         {
             return (
@@ -101,6 +110,13 @@ export default class HomeScreen extends React.Component
             uri: record.link.toString()
         });
 
+    }
+
+    _btnResetApp = () =>
+    {
+        alert(11);
+        AsyncStorage.clear();
+        this.props.navigation.navigate('Home')
     }
 
     _onRefresh = () =>

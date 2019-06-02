@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { WebView, ActivityIndicator, StatusBar, View, StyleSheet } from 'react-native';
+import { WebView, ActivityIndicator, View, StyleSheet } from 'react-native';
 
 
 export default class Webview extends Component
@@ -25,7 +25,6 @@ export default class Webview extends Component
 
     render()
     {
-
         return (
             <View style={styles.container}>
 
