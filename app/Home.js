@@ -1,10 +1,9 @@
 ﻿
-import React, { Component } from 'react';
+import React from 'react';
 import
 {
     StyleSheet,
     AsyncStorage,
-    Text,
     View,
     Button
 } from 'react-native';
@@ -19,14 +18,20 @@ export default class HomeScreen extends React.Component
     {
         return (
             <View style={styles.container}>
-                <Button title="RSS FEED"  />
-                <Button title="sign me out" onPress={this._signOutAsync} />
+                <Button title="RSS FEED" onPress={this._showMoreApp} />
+                <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
             </View>
         );
     }
+
+    _showMoreApp = () =>
+    {
+        this.props.navigation.navigate('Other');
+    };
+
     _signOutAsync = async () =>
     {
-        await AsyncStorage.clear();
+        await AsyncStorage.removeItem("userToken");
         this.props.navigation.navigate('Auth');
     };
 }

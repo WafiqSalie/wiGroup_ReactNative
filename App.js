@@ -4,14 +4,13 @@ import
 {
     ActivityIndicator,
     AsyncStorage,
-    Button,
     StatusBar,
     StyleSheet,
     View,
 } from 'react-native';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 
-class AuthLoadingScreen extends React.Component
+class AppLoadingScreen extends React.Component
 {
     constructor()
     {
@@ -23,13 +22,14 @@ class AuthLoadingScreen extends React.Component
     _bootstrapAsync = async () =>
     {
         const userToken = await AsyncStorage.getItem('userToken');
+        const startingUpForFirstTime = await AsyncStorage.getItem('startingUpForFirstTime');
 
-        // This will switch to the App screen or Auth screen and this loading
-        // screen will be unmounted and thrown away.
-        this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+        if (!startingUpForFirstTime)
+            this.props.navigation.navigate('Walkthrough');
+        else
+            this.props.navigation.navigate(userToken ? 'Home' : 'SignIn');
     };
-
-    // Render any loading content that you like here
+    
     render()
     {
         return (
@@ -54,11 +54,11 @@ import AppStack from './app/stack';
 
 export default createAppContainer(createSwitchNavigator(
     {
-        AuthLoading: AuthLoadingScreen,
+        AppLoading: AppLoadingScreen,
         App: AppStack,
-        Auth: AuthStack,
+        Auth: AuthStack
     },
     {
-        initialRouteName: 'AuthLoading',
+        initialRouteName: 'AppLoading'
     }
 ));

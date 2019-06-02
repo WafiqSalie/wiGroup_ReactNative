@@ -1,15 +1,15 @@
 ﻿
 import { createStackNavigator } from 'react-navigation';
 
-
 import SignInScreen from './SignIn';
+import Walkthrough from './walkthrough';
 
 export default createStackNavigator(
     {
-        SignIn: SignInScreen
+        SignIn: SignInScreen,
+        Walkthrough: Walkthrough
     },
     {
-        initialRouteName: "SignIn",
         headerMode: "none"
     }
 );

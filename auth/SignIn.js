@@ -1,11 +1,10 @@
 ﻿
 
-import React, { Component } from 'react';
+import React from 'react';
 import
 {
     StyleSheet,
     AsyncStorage,
-    Text,
     View,
     Button
 } from 'react-native';
@@ -27,7 +26,7 @@ export default class SignInScreen extends React.Component
 
     _signInAsync = async () =>
     {
-        await AsyncStorage.setItem('userToken', 'abc');
+        await AsyncStorage.setItem('userToken', '1');
         this.props.navigation.navigate('App');
     };
 }
