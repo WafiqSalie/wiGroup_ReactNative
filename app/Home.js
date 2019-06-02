@@ -66,7 +66,7 @@ export default class HomeScreen extends React.Component
     render()
     {
 
-        AsyncStorage.clear()
+       // AsyncStorage.clear()
 
         if (this.state.isLoading)
         {
